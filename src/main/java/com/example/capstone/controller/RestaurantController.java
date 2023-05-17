@@ -1,9 +1,9 @@
 package com.example.capstone.controller;
 
+import com.example.capstone.domain.GetRestaurant;
 import com.example.capstone.domain.RestaurantRequest;
 import com.example.capstone.service.RestaurantService;
 import com.google.gson.Gson;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -31,8 +31,8 @@ public class RestaurantController {
 //        throws IOException
         System.out.println("들어옴");
         Gson gson = new Gson();
-        RestaurantRequest restaurantRequest = gson.fromJson(restaurantRequestBody, RestaurantRequest.class);
-        if(restaurantService.RestaurantRegister(restaurantRequest,restaurantImg,menuImgList)){
+        GetRestaurant getRestaurant = gson.fromJson(restaurantRequestBody, GetRestaurant.class);
+        if(restaurantService.RestaurantRegister(getRestaurant,restaurantImg,menuImgList)){
             return ResponseEntity.ok().body("success");  //식당등록 완료
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -46,5 +46,10 @@ public class RestaurantController {
 
         return ResponseEntity.ok()
                 .body(imgListAndRestaurantNameList);
+    }
+
+    @GetMapping("/{restaurantName}")
+    public ResponseEntity<RestaurantRequest> getRestaurantByName(@PathVariable String restaurantName) throws IOException{
+        return restaurantService.getRestaurantByName(restaurantName);
     }
 }

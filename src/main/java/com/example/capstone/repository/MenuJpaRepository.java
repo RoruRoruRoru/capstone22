@@ -14,6 +14,6 @@ public interface MenuJpaRepository extends JpaRepository<Menu, Long>, MenuReposi
     @Override
     Optional<Menu> findByMenuImgUrl(String menuImgUrl);
     @Override
-    List<Menu> findListByRestaurantId(String restaurantId);
+    List<Menu> findListByRestaurantId(Long restaurantId);
     //Optional<RestaurantMenu> findByRestaurantId(String restaurantId);
 }

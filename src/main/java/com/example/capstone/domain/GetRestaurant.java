@@ -1,37 +1,13 @@
 package com.example.capstone.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import java.util.List;
 
-// 저장할 클래스
-@Entity
-public class Restaurant{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    private Long restaurantId;  //id
-    private String restaurantImgUrl;   //식당 이미지 주소
+// Retrofit을 통해 가져올 데이터 (이미지 제외 이미지는 따로 처리)
+public class GetRestaurant {
     private String restaurantName;   // 식당이름 정보
     private String restaurantLocation;// 식당 위치 정보
     private String restaurantOperatingTime; // 운영시간 정보
-
-    public Long getRestaurantId() {
-        return restaurantId;
-    }
-
-    public void setRestaurantId(Long restaurantId) {
-        this.restaurantId = restaurantId;
-    }
-
-    public String getRestaurantImgUrl() {
-        return restaurantImgUrl;
-    }
-
-    public void setRestaurantImgUrl(String restaurantImgUrl) {
-        this.restaurantImgUrl = restaurantImgUrl;
-    }
+    private List<GetMenu> menuList; // 추가할메뉴리스트 저장시 위에 값들만 저장
 
     public String getRestaurantName() {
         return restaurantName;
@@ -56,8 +32,11 @@ public class Restaurant{
     public void setRestaurantOperatingTime(String restaurantOperatingTime) {
         this.restaurantOperatingTime = restaurantOperatingTime;
     }
+    public List<GetMenu> getMenuList() {
+        return menuList;
+    }
 
-
-//    private List<RestaurantMenu> menuList; // 추가할메뉴리스트 저장시 위에 값들만 저장
-
+    public void setMenuList(List<GetMenu> menuList) {
+        this.menuList = menuList;
+    }
 }

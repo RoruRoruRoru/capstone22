@@ -1,13 +1,26 @@
 package com.example.capstone.domain;
 
+import jakarta.persistence.*;
+
 import java.util.List;
 
-// Retrofit을 통해 가져올 데이터 (이미지 제외 이미지는 따로 처리)
 public class RestaurantRequest {
-    private String restaurantName;   // 식당이름 정보
-    private String restaurantLocation;// 식당 위치 정보
-    private String restaurantOperatingTime; // 운영시간 정보
-    private List<GetMenu> menuList; // 추가할메뉴리스트 저장시 위에 값들만 저장
+
+    private String restaurantName;
+    private String restaurantLocation;
+    private String restaurantOperatingTime;
+    private String restaurantImg;
+
+
+    public List<MenuRequest> getMenuList() {
+        return menuList;
+    }
+
+    public void setMenuList(List<MenuRequest> menuList) {
+        this.menuList = menuList;
+    }
+
+    private List<MenuRequest> menuList;
 
     public String getRestaurantName() {
         return restaurantName;
@@ -31,12 +44,16 @@ public class RestaurantRequest {
 
     public void setRestaurantOperatingTime(String restaurantOperatingTime) {
         this.restaurantOperatingTime = restaurantOperatingTime;
-    }
-    public List<GetMenu> getMenuList() {
-        return menuList;
+
     }
 
-    public void setMenuList(List<GetMenu> menuList) {
-        this.menuList = menuList;
+    public String getRestaurantImg() {
+        return restaurantImg;
     }
+
+    public void setRestaurantImg(String restaurantImg) {
+        this.restaurantImg = restaurantImg;
+    }
+
+
 }

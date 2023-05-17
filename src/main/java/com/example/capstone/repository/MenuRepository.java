@@ -12,5 +12,5 @@ public interface MenuRepository {
     Optional<Menu> findByMenuImgUrl(String menuImgUrl);
    // Optional<RestaurantMenu> findByRestaurantId(String restaurantId);
     List<Menu> findAll();
-    List<Menu> findListByRestaurantId(String restaurantId);
+    List<Menu> findListByRestaurantId(Long restaurantId);
 }
