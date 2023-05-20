@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -171,5 +170,36 @@ public class RestaurantService {
             return ResponseEntity.notFound().build();
         }
     }
+
+// 2023 05 20
+    public Map<String, Object> getNameAndImg(String category) throws IOException {
+        Map<String, Object> NameAndImg = new HashMap<>();
+
+        List<String> restaurantName= new ArrayList<>();
+        List<String> restaurantImg = new ArrayList<>();
+
+        List<Restaurant> restaurants = restaurantRepository.findAllByRestaurantCategory(category);
+        for (Restaurant restaurant : restaurants) {
+            restaurantName.add(restaurant.getRestaurantName());
+            restaurantImg.add(restaurant.getRestaurantImgUrl());
+        }
+        List<String> imageList = new ArrayList<>();
+
+        for (String imageUrl : restaurantImg) {
+            File imageFile = new File(imageUrl);
+            byte[] imageBytes = Files.readAllBytes(imageFile.toPath());
+            String imageData = Base64.getEncoder().encodeToString(imageBytes);
+            imageList.add(imageData);
+        }
+        // 보낼정보 map에 저장
+        Map<String, Object> result = new HashMap<>();
+        result.put("imageList", imageList);
+        result.put("restaurantName", restaurantName);
+        return result;
+    }
+
+
+
+
 }
 

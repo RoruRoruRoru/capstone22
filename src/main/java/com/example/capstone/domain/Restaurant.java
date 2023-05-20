@@ -16,6 +16,8 @@ public class Restaurant{
     private String restaurantName;   // 식당이름 정보
     private String restaurantLocation;// 식당 위치 정보
     private String restaurantOperatingTime; // 운영시간 정보
+    private String restaurantCategory;
+
 
     public Long getRestaurantId() {
         return restaurantId;
@@ -56,7 +58,11 @@ public class Restaurant{
     public void setRestaurantOperatingTime(String restaurantOperatingTime) {
         this.restaurantOperatingTime = restaurantOperatingTime;
     }
+    public String getRestaurantCategory() {return restaurantCategory;
+    }
 
+    public void setRestaurantCategory(String restaurantCategory) {this.restaurantCategory = restaurantCategory;
+    }
 
 //    private List<RestaurantMenu> menuList; // 추가할메뉴리스트 저장시 위에 값들만 저장
 

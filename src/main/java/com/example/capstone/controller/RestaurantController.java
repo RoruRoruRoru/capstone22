@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -48,8 +50,20 @@ public class RestaurantController {
                 .body(imgListAndRestaurantNameList);
     }
 
+
+
+
     @GetMapping("/{restaurantName}")
     public ResponseEntity<RestaurantRequest> getRestaurantByName(@PathVariable String restaurantName) throws IOException{
         return restaurantService.getRestaurantByName(restaurantName);
+    }
+
+    // 2023 05 20
+    @GetMapping(path = "/getCategorySearchData", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Map<String, Object>> getNameAndImg(@RequestParam("category") String category) throws IOException {
+        Map<String, Object> NameAndImg = restaurantService.getNameAndImg(category);
+
+        return ResponseEntity.ok()
+                .body(NameAndImg);
     }
 }

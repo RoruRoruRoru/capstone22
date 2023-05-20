@@ -13,5 +13,6 @@ public interface RestaurantRepository {
     Optional<Restaurant> findByRestaurantLocation(String restaurantLocation);
     Optional<Restaurant> findByRestaurantOperatingTime(String operatingTime);
     List<Restaurant> findAll();
+    List<Restaurant> findAllByRestaurantCategory(String category);
 
 }
